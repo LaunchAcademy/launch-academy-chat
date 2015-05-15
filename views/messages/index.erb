@@ -1,0 +1,10 @@
+<h1>Messages</h1>
+
+<% messages.each do |message| %>
+  <div class="pure-u-1-4">
+    <%= message["created_at"] %>
+  </div>
+  <div class="pure-u-1-2">
+    <%= message["content"] %>
+  </div>
+<% end %>
