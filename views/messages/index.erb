@@ -1,10 +1,22 @@
 <h1>Messages</h1>
 
-<% messages.each do |message| %>
+<div class="pure-g">
   <div class="pure-u-1-4 created_at">
-    <%= message["created_at"] %>
+    <strong>Created At</strong>
   </div>
+
   <div class="pure-u-1-2 content">
-    <%= message["content"] %>
+    <strong>Content</strong>
+  </div>
+</div>
+
+<% messages.each do |message| %>
+  <div class="pure-g">
+    <div class="pure-u-1-4 created_at">
+      <%= message["created_at"] %>
+    </div>
+    <div class="pure-u-1-2 content">
+      <%= message["content"] %>
+    </div>
   </div>
 <% end %>
