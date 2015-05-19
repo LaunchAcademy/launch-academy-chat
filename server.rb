@@ -46,7 +46,7 @@ end
 
 get "/messages" do
   sql = <<-SQL
-    SELECT * FROM messages ORDER BY created_at DESC LIMIT 50;
+    SELECT * FROM messages ORDER BY created_at DESC LIMIT 10;
   SQL
   messages = exec_query(sql)
   erb :"messages/index", locals: { messages: messages }
