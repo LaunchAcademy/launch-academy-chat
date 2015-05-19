@@ -57,15 +57,19 @@ get "/messages/new" do
 end
 
 post "/messages" do
-  sql = <<-SQL
-    INSERT INTO messages(content, created_at) VALUES($1, $2)
-      RETURNING id;
-  SQL
-  values = [
-    params["content"],
-    DateTime.now
-  ]
-  result = exec_query(sql, values)
+  if params["content"].downcase.include?("iframe")
+    raise StandardError
+  else
+    sql = <<-SQL
+      INSERT INTO messages(content, created_at) VALUES($1, $2)
+        RETURNING id;
+    SQL
+    values = [
+      params["content"],
+      DateTime.now
+    ]
+    result = exec_query(sql, values)
 
-  redirect to("/messages")
+    redirect to("/messages")
+  end
 end
