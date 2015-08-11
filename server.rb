@@ -45,9 +45,10 @@ get "/" do
 end
 
 get "/messages" do
-  sql = <<-SQL
-    SELECT * FROM messages ORDER BY created_at DESC LIMIT 10;
-  SQL
+  sql = "SELECT * FROM messages ORDER BY created_at DESC LIMIT 20"
+  if page = params["page"]
+    sql = "#{sql} OFFSET #{(page.to_i - 1) * 20}"
+  end
   messages = exec_query(sql)
   erb :"messages/index", locals: { messages: messages }
 end
